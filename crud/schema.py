@@ -43,21 +43,21 @@ class Query:
     def resolve_countries(self, info, **kwargs):
         countries = Country.objects.all()
         if kwargs.get("id"):
-            countries.objects.filter(pk=kwargs.get("id"))
+            countries = countries.filter(pk=kwargs.get("id"))
         if kwargs.get("name"):
-            countries.objects.filter(name__icontains=kwargs.get("name"))
+            countries = countries.filter(name__icontains=kwargs.get("name"))
         if kwargs.get("continent_name"):
-            countries.objects.filter(continent__icontains=kwargs.get("continent_name"))
+            countries = countries.filter(continent__icontains=kwargs.get("continent_name"))
         return countries
     
     def resolve_states(self, info, **kwargs):
-        states = Country.objects.all()
+        states = State.objects.all()
         if kwargs.get("id"):
-            states.objects.filter(pk=kwargs.get("id"))
+            states = states.filter(pk=kwargs.get("id"))
         if kwargs.get("name"):
-            states.objects.filter(name__icontains=kwargs.get("name"))
+            states = states.filter(name__icontains=kwargs.get("name"))
         if kwargs.get("country_name"):
-            states.objects.filter(country__name__icontains=kwargs.get("country_name"))
+            states = states.filter(country__name__icontains=kwargs.get("country_name"))
         return states
 
 
